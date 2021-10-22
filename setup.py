@@ -15,7 +15,7 @@ setup(
     description='Python bindings to GenDisCal and addition of phylogenetic tree function',
     long_description=README,
     long_description_content_type='text/markdown',
-    url='https://github.com/MrTomRod/gendiscalpy',  # todo
+    url='https://github.com/MrTomRod/gendiscalpy',
     author='Thomas Roder',
     author_email='roder.thomas@gmail.com',
     license='MIT',

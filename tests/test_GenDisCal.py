@@ -1,0 +1,41 @@
+import logging
+from unittest import TestCase
+from gendiscalpy.GenDisCal import GenDisCal
+import numpy as np
+
+logging.basicConfig(level=logging.INFO)
+
+
+class TestGenDisCal(TestCase):
+    def test_version(self):
+        version = GenDisCal().version
+        print(version)
+        self.assertEqual(version, 'GenDisCal v1.3.1')
+
+    def test_run_files(self):
+        res = GenDisCal().run('../test-data/*.fna')
+        print(res)
+
+    def test_run_fifo(self):
+        res = GenDisCal().run('../test-data/fifo.txt', file_list=True)
+        print(res)
+
+    def test_run_hist(self):
+        res = GenDisCal().run('../test-data/*.fna', histogram=True)
+        print(res)
+
+    def test_run_dist(self):
+        res = GenDisCal().run('../test-data/*.fna', distance_matrix=True)
+        print(res)
+
+    def test_preset(self):
+        m1 = GenDisCal().run('../test-data/*.fna', distance_matrix=True, preset='PaSiT4')
+        m2 = GenDisCal().run('../test-data/*.fna', distance_matrix=True, preset='PaSiT6')
+        self.assertEqual(first=list(m1.columns), second=list(m2.columns))
+        self.assertFalse(np.allclose(m1.values, m2.values))
+
+    def test_method(self):
+        m1 = GenDisCal().run('../test-data/*.fna', distance_matrix=True, method='manhattan')
+        m2 = GenDisCal().run('../test-data/*.fna', distance_matrix=True, method='euclid')
+        self.assertEqual(first=list(m1.columns), second=list(m2.columns))
+        self.assertFalse(np.allclose(m1.values, m2.values))

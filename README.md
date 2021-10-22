@@ -77,7 +77,7 @@ distance_matrix = gdc.run('test-data/*.fna', distance_matrix=True)
 histogram = gdc.run('test-data/*.fna', histogram=True)
 
 # this command returns a float
-val = gdc.compare_two(assembly_1='../test-data/FAM3257-i1-1.fna', assembly_2='../test-data/FAM13496-i1-1.fna')
+val = gdc.compare_two(assembly_1='test-data/FAM3257-i1-1.fna', assembly_2='test-data/FAM13496-i1-1.fna')
 
 # this command returns a string in Newick format
 newick = GenDisCalTree.from_files('test-data/*.fna')

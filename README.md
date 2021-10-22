@@ -1,6 +1,9 @@
 # gendiscalpy
 
-Python bindings to GenDisCal and addition of phylogenetic tree function
+Python bindings to [GenDisCal](https://github.com/LM-UGent/GenDisCal) and addition of phylogenetic tree function
+
+- GenDisCal repo: https://github.com/LM-UGent/GenDisCal
+- GenDisCal paper: https://academic.oup.com/bioinformatics/article/36/8/2337/5695704
 
 ## Installation
 

@@ -62,16 +62,21 @@ gendiscal_tree from_files assemblies/*.fna --preset PaSiT6 --method euclidian
 ## Usage as Python class
 
 ```python
-from gendiscalpy import GenDisCal
-from gendiscalpy import GenDisCalTree
+from gendiscalpy import GenDisCal, GenDisCalTree
+from gendiscalpy.install_gendiscal import install
 
-# the following commands return pandas.DataFrame objects
+# install GenDisCal to /home/user/bin/GenDisCal
+install(path='/home/user/bin')
+
+# these commands return pandas.DataFrame objects
 table1 = GenDisCal().run('test-data/*.fna')
 table2 = GenDisCal().run('test-data/*.fna', preset='PaSiT6', method='euclidian')
 distance_matrix = GenDisCal().run('test-data/*.fna', distance_matrix=True)
 histogram = GenDisCal().run('test-data/*.fna', histogram=True)
-# the following command returns a float
+
+# this command returns a float
 val = GenDisCal().compare_two(assembly_1='../test-data/FAM3257-i1-1.fna', assembly_2='../test-data/FAM13496-i1-1.fna')
-# the following command returns a string in Newick format
+
+# this command returns a string in Newick format
 newick = GenDisCalTree.from_files('test-data/*.fna')
 ```

@@ -13,8 +13,8 @@ PACKAGE_ROOT = os.path.dirname(__file__)
 
 
 class GenDisCal:
-    def __init__(self):
-        self.bin = 'GenDisCal'
+    def __init__(self, bin: str = None):
+        self.bin = 'GenDisCal' if bin is None else bin
         assert is_installed(self.bin), f'GenDisCal binary is missing! {self.bin=}'
         if not self.version == __expected_gendiscal_version__:
             logging.warning(f'GenDisCal version does not match GenDisCal.py! expected={__expected_gendiscal_version__}; real=')

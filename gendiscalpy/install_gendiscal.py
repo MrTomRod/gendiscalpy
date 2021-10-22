@@ -5,7 +5,7 @@ from . import __gendiscal_binary_url__
 from .utils import query_options, get_paths
 
 
-def download_and_install(target_path: str) -> str:
+def download_and_extract(target_path: str) -> str:
     temp_file, headers = request.urlretrieve(
         url=__gendiscal_binary_url__
     )
@@ -27,12 +27,12 @@ def select_path() -> str:
     return path
 
 
-def run(path: str = None):
+def install(path: str = None):
     if path is None:
         path = select_path()
     assert os.path.isdir(path), f'Error: Directory does not exist: {path=}'
 
-    gendiscal_bin = download_and_install(target_path=path)
+    gendiscal_bin = download_and_extract(target_path=path)
 
     print(f'Installed GenDiscal here: {gendiscal_bin}')
 
@@ -40,7 +40,7 @@ def run(path: str = None):
 def main():
     from fire import Fire
 
-    Fire(run)
+    Fire(install)
 
 
 if __name__ == '__main__':

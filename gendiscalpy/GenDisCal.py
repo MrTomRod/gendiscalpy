@@ -31,6 +31,12 @@ class GenDisCal:
         check_output(subprocess)
         return subprocess.stdout.strip()
 
+    def compare_two(self, assembly_1: str, assembly_2: str, preset: str = None, method: str = None) -> np.float64:
+        stdout = self._run(assembly_1, assembly_2, preset=preset, method=method)
+        print(stdout)
+        table = self._parse_table(stdout=stdout)
+        return table.Distance.max()
+
     def run(
             self,
             *files: [str],

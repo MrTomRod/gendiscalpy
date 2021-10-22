@@ -70,6 +70,8 @@ table1 = GenDisCal().run('test-data/*.fna')
 table2 = GenDisCal().run('test-data/*.fna', preset='PaSiT6', method='euclidian')
 distance_matrix = GenDisCal().run('test-data/*.fna', distance_matrix=True)
 histogram = GenDisCal().run('test-data/*.fna', histogram=True)
+# the following command returns a float
+val = GenDisCal().compare_two(assembly_1='../test-data/FAM3257-i1-1.fna', assembly_2='../test-data/FAM13496-i1-1.fna')
 # the following command returns a string in Newick format
 newick = GenDisCalTree.from_files('test-data/*.fna')
 ```

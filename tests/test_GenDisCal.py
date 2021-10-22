@@ -39,3 +39,7 @@ class TestGenDisCal(TestCase):
         m2 = GenDisCal().run('../test-data/*.fna', distance_matrix=True, method='euclid')
         self.assertEqual(first=list(m1.columns), second=list(m2.columns))
         self.assertFalse(np.allclose(m1.values, m2.values))
+
+    def test_two(self):
+        val = GenDisCal().compare_two(assembly_1='../test-data/FAM3257-i1-1.fna', assembly_2='../test-data/FAM13496-i1-1.fna')
+        self.assertGreater(val, 0)

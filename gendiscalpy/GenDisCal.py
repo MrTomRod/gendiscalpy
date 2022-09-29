@@ -17,7 +17,8 @@ class GenDisCal:
         self.bin = 'GenDisCal' if bin is None else bin
         assert is_installed(self.bin), f'GenDisCal binary is missing! {self.bin=}'
         if not self.version == __expected_gendiscal_version__:
-            logging.warning(f'GenDisCal version does not match GenDisCal.py! expected={__expected_gendiscal_version__}; real=')
+            logging.warning(
+                f'GenDisCal version does not match GenDisCal.py! expected={__expected_gendiscal_version__}; real=')
 
     @cached_property
     def version(self) -> str:
@@ -32,8 +33,14 @@ class GenDisCal:
         return subprocess.stdout.strip()
 
     def compare_two(self, assembly_1: str, assembly_2: str, preset: str = None, method: str = None) -> np.float64:
+        # Throw error if files are not readable (see https://github.com/LM-UGent/GenDisCal/issues/2)
+        for file in (assembly_1, assembly_2):
+            if not os.access(file, os.R_OK):
+                raise IOError(f'Cannot read assembly={file}')
+
         stdout = self._run(assembly_1, assembly_2, preset=preset, method=method)
         table = self._parse_table(stdout=stdout)
+
         return table.Distance.max()
 
     def run(
@@ -56,7 +63,8 @@ class GenDisCal:
         :param histogram:  if true, return histogram instead of table
         :return: table/distance-matrix/histogram as pd.DataFrame
         """
-        stdout = self._run(*files, file_list=file_list, distance_matrix=distance_matrix, histogram=histogram, preset=preset, method=method)
+        stdout = self._run(*files, file_list=file_list, distance_matrix=distance_matrix, histogram=histogram,
+                           preset=preset, method=method)
 
         if distance_matrix:
             return self._parse_dist(stdout)
@@ -85,8 +93,9 @@ class GenDisCal:
         :param histogram:  if true, return histogram instead of table
         :return: table/distance-matrix/histogram as pd.DataFrame
         """
-        assert files, f'No files were specified!'
-        assert not (distance_matrix and histogram), f'Error: options distance_matrix and histogram are mutually exclusive!'
+        assert files, f'No files were specified! {files=}'
+        assert not (
+                    distance_matrix and histogram), f'Error: options distance_matrix and histogram are mutually exclusive!'
 
         command = [self.bin]
 

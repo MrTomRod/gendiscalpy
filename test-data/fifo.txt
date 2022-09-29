@@ -1,4 +1,4 @@
-../test-data/FAM3257-i1-1.fna
-../test-data/FAM13496-i1-1.fna
-../test-data/FAM14217-p1-1.fna
-../test-data/FAM17891-i1-1.fna
+test-data/FAM3257-i1-1.fna
+test-data/FAM13496-i1-1.fna
+test-data/FAM14217-p1-1.fna
+test-data/FAM17891-i1-1.fna

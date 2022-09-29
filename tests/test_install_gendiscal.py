@@ -1,7 +1,6 @@
+import os
 from unittest import TestCase
 from gendiscalpy.install_gendiscal import download_and_extract, select_path, install
-
-import os
 
 INSTALL_PATH = os.path.join(os.path.expanduser('~'), 'bin')
 INSTALL_PATH_BIN = os.path.join(INSTALL_PATH, 'GenDisCal')

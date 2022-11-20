@@ -11,7 +11,7 @@ README = (HERE / 'README.md').read_text()
 # This call to setup() does all the work
 setup(
     name='gendiscalpy',
-    version='0.0.1',
+    version='0.0.2',
     description='Python bindings to GenDisCal and addition of phylogenetic tree function',
     long_description=README,
     long_description_content_type='text/markdown',

@@ -48,10 +48,24 @@ class TestGenDisCal(TestCase):
         val = GenDisCal().compare_two(assembly_1='test-data/FAM3257-i1-1.fna', assembly_2='test-data/FAM13496-i1-1.fna')
         self.assertGreater(val, 0)
 
+    def test_two_approxani(self):
+        val = GenDisCal().compare_two(
+            assembly_1='test-data/FAM3257-i1-1.fna', assembly_2='test-data/FAM13496-i1-1.fna',
+            preset='approxANI'
+        )
+        self.assertGreater(val, 0)
+
+    def test_identical(self):
+        val = GenDisCal().compare_two(
+            assembly_1='test-data/FAM3257-i1-1.fna', assembly_2='test-data/FAM3257-i1-1.fna',
+            preset='approxANI'
+        )
+        self.assertEqual(val, 0)
+
     def test_no_permissions(self):
         no_permissions_file = 'test-data/FAM3257-i1-1.fna.no_permissions'
         if not os.path.isfile(no_permissions_file):
             shutil.copy('test-data/FAM3257-i1-1.fna', no_permissions_file)
         os.chmod(no_permissions_file, mode=0)  # make unreadable
-        with self.assertRaises(Exception):
+        with self.assertRaises(IOError):
             val = GenDisCal().compare_two(assembly_1=no_permissions_file, assembly_2='test-data/FAM13496-i1-1.fna')

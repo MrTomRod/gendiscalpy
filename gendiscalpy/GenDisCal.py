@@ -34,6 +34,7 @@ class GenDisCal:
 
     def compare_two(self, assembly_1: str, assembly_2: str, preset: str = None, method: str = None) -> np.float64:
         # Throw error if files are not readable (see https://github.com/LM-UGent/GenDisCal/issues/2)
+        # If this is not done, GenDisCal will simply report distance=0
         for file in (assembly_1, assembly_2):
             if not os.access(file, os.R_OK):
                 raise IOError(f'Cannot read assembly={file}')
